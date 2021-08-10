@@ -28,3 +28,10 @@ func (s *TodoListService) GetById(userId, ListId int) (todo.TodoList, error) {
 func (s *TodoListService) DeleteById(userId, ListId int) error {
 	return s.repo.DeleteById(userId, ListId)
 }
+
+func (s *TodoListService) UpdateById(userId, ListId int, input todo.UpdateListInput) error {
+	if err := input.Validate(); err != nil {
+		return err
+	}
+	return s.repo.UpdateById(userId, ListId, input)
+}
