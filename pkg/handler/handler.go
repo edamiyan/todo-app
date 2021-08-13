@@ -1,8 +1,11 @@
 package handler
 
 import (
+	_ "github.com/edamiyan/todo-app/docs"
 	"github.com/edamiyan/todo-app/pkg/service"
 	"github.com/gin-gonic/gin"
+	"github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
 )
 
 type Handler struct {
@@ -43,6 +46,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		}
 
 	}
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.Run(":8000")
 
 	return router
 }
