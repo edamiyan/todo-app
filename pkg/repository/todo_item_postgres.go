@@ -60,3 +60,11 @@ INNER JOIN %s ul on ul.list_id = li.list_id WHERE ti.id = $1 AND ul.user_id = $2
 
 	return item, nil
 }
+
+func (r *TodoItemPostgres) DeleteById(userId, itemId int) error {
+	query := fmt.Sprintf(`DELETE FROM %s ti USING %s li, %s ul 
+									WHERE ti.id = li.item_id AND li.list_id = ul.list_id AND ul.user_id = $1 AND ti.id = $2`,
+		todoItemsTable, listsItemsTable, usersListsTable)
+	_, err := r.db.Exec(query, userId, itemId)
+	return err
+}
