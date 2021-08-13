@@ -7,6 +7,14 @@ import (
 	"strconv"
 )
 
+type getAllListsResponse struct {
+	Data []todo.TodoList `json:"data"`
+}
+
+type getAllItemsResponse struct {
+	Data []todo.TodoItem `json:"data"`
+}
+
 func (h *Handler) createList(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -28,10 +36,6 @@ func (h *Handler) createList(c *gin.Context) {
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"id": id,
 	})
-}
-
-type getAllListsResponse struct {
-	Data []todo.TodoList `json:"data"`
 }
 
 func (h *Handler) getAllLists(c *gin.Context) {
