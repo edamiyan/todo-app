@@ -18,6 +18,9 @@ jobs:
       with:
         go-version: 1.17
         
+    - name: Init mod
+      run: go mod init github.com/edamiyan/todo-app
+      
     - name: Install all requirements
       run: go mod tidy -v
     
