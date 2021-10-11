@@ -18,6 +18,9 @@ jobs:
       with:
         go-version: 1.17
         
+    - name: PWD
+      run: pwd
+    
     - name: Init mod
       run: go mod init github.com/edamiyan/todo-app
       
